@@ -48,7 +48,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Password should not be empty")
     @Size(min = 4, max = 70, message = "Password should be between 4 or 70 characters")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

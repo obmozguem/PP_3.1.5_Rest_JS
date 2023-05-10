@@ -3,6 +3,7 @@ package com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.services;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.User;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public User edit(User user) {
         return userRepository.saveAndFlush(user);
     }
-
+    @Query("Select u from User u left join fetch u.roles")
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
@@ -57,7 +58,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException(String.format("User %s doesn't exists", username)));
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-                user.getAuthorities());
+        return user;
     }
 }
