@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <table th:border="1">
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Username</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"/>
+            <td th:text="${user.getFirstName()}"/>
+            <td th:text="${user.getLastName()}"/>
+            <td th:text="${user.getUsername()}"/>
+            <td th:text="${user.getAge()}"/>
+            <td th:text="${user.getEmail()}"/>
+            <td><a th:href="@{/admin/edit(id=${user.getId()})}">Edit</a></td>
+            <td>
+                <form th:method="POST" th:action="@{/admin/delete(id=${user.getId()})}">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<br/>
+<hr/>
+
+<form th:method="GET" th:action="@{/admin/add}">
+    <input type="submit" value="Create new user">
+</form>
+
+<p th:align="center">
+    <button class="button" type="button" onClick='location.href="http://localhost:8080/logout"'/>
+    Log out</button>
+    <style>
+        button {
+            color: darkmagenta;
+            background-color: lightcoral;
+        }
+
+        button {
+            font-size: 30px;
+        }
+
+        button:hover {
+            color: midnightblue;
+            background-color: red;
+        }
+    </style>
+</p>
+
+</body>
+</html>

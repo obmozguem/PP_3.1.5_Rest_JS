@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<body th:bgcolor="PowderBlue">
+<table th:border="6" th:align="center" th:width="500" th:bgcolor="NavajoWhite" th:cellspacing="5" th:cellpadding="20"
+       style="margin-top: 25px">
+    <tread>
+        <tr th:bgcolor="AntiqueWhite">
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+        </tr>
+    </tread>
+    <tr>
+        <form>
+            <td><span th:text="${user.getUsername()}"> Username </span></td>
+            <td><span th:text="${user.getFirstName()}"> First name </span></td>
+            <td><span th:text="${user.getLastName()}"> Last name </span></td>
+            <td><span th:text="${user.getAge()}"> Age </span></td>
+            <td><span th:text="${user.getEmail()}"> Email </span></td>
+        </form>
+    </tr>
+</table>
+<p th:align="center">
+    <button class="button" type="button" onClick='location.href="http://localhost:8080/logout"'/>
+    Log out</button>
+    <style>
+        button {
+            color: darkmagenta;
+            background-color: lightcoral;
+        }
+
+        button {
+            font-size: 30px;
+        }
+
+        button:hover {
+            color: midnightblue;
+            background-color: red;
+        }
+    </style>
+</p>
+</body>
+</html>

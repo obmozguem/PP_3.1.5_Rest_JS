@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Index</title>
+</head>
+
+<body>
+
+<div>
+  <th:block th:each="msg : ${messages}">
+    <h1 th:text="${msg}" th:align="center"></h1>
+  </th:block>
+</div>
+
+<p th:align="center">
+  <button class="button" type="button" onClick='location.href="http://localhost:8080/login"'>
+    Log in
+  </button>
+  <style>
+    button {
+      color: darkmagenta;
+      background-color: lightcoral;
+    }
+
+    button {
+      font-size: 100px;
+    }
+
+    button:hover {
+      font-size: 150px;
+      color: green;
+      background-color: lightgoldenrodyellow;
+    }
+  </style>
+</p>
+
+</body>
+
+</html>
