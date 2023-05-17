@@ -33,9 +33,18 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     static final String ROLE_PREFIX = "ROLE_";
     @Override
     public String getAuthority() {
         return ROLE_PREFIX+role;
     }
+
+    public String getAuthorityWithoutPrefix(){
+        return role;
+    }
+
 }

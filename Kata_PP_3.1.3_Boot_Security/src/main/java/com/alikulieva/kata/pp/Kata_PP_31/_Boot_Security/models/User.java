@@ -167,4 +167,12 @@ public class User implements UserDetails {
                 '}';
     }
 
+    public String getAllRolesAsString() {
+        StringBuilder finishedString = new StringBuilder();
+        for (Role role : roles) {
+            finishedString.append(role.getRole()).append(", ");
+        }
+        return finishedString.substring(0, finishedString.length() - 2);
+    }
+
 }

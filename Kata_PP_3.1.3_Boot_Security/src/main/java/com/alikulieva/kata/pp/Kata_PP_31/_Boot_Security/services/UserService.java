@@ -1,5 +1,6 @@
 package com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.services;
 
+import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.Role;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.User;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface UserService {
     void delete(Long id);
 
     Optional<User> findByUsername(String username);
+
+    List<Role> getAllRoles();
 }
