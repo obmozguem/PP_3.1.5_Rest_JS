@@ -36,9 +36,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public void addUser(User newUser) {
-        newUser.setUsername(newUser.getEmail());
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-
         userRepository.save(newUser);
     }
 
@@ -46,7 +44,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public void edit(User updatedUser) {
         User user = this.getById(updatedUser.getId());
 
-        updatedUser.setUsername(updatedUser.getEmail());
         if (!updatedUser.getPassword().equals(user.getPassword())) {
             updatedUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
