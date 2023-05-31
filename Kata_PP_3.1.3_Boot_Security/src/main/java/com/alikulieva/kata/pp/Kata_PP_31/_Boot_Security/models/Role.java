@@ -37,9 +37,11 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
+    static final String ROLE_PREFIX = "ROLE_";
+
     @Override
     public String getAuthority() {
-        return this.role;
+        return ROLE_PREFIX + role;
     }
 
     @Override
@@ -49,8 +51,4 @@ public class Role implements GrantedAuthority {
                 ", role='" + role + '\'' +
                 '}';
     }
-    //    public String getAuthorityWithoutPrefix(){
-//        return role;
-//    }
-
 }

@@ -1,6 +1,5 @@
 package com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.services;
 
-import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.Role;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.User;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.repositories.RoleRepository;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.repositories.UserRepository;
@@ -36,9 +35,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if (user.isEmpty()) {
             throw new IllegalArgumentException(String.format("There is no user with ID = %d in database", id));
         }
-
         return user.get();
-//        return userRepository.getById(id);
     }
 
     @Override
