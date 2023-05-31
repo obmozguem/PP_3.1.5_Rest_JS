@@ -3,6 +3,7 @@ package com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.contollers;
 
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.models.User;
 import com.alikulieva.kata.pp.Kata_PP_31._Boot_Security.services.UserServiceImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,24 +24,24 @@ public class AdminRestController {
         return ResponseEntity.ok(userServiceImpl.getAll());
     }
 
-    @PostMapping("/addNewUser")
-    public ResponseEntity<User> addNewUser(@RequestBody User user) {
+    @PostMapping()
+    public ResponseEntity<HttpStatus> addNewUser(@RequestBody User user) {
         userServiceImpl.addUser(user);
 
-        return ResponseEntity.ok(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/updateUser/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         userServiceImpl.edit(user);
 
         return ResponseEntity.ok(user);
     }
 
-    @DeleteMapping("/removeUser/{id}")
-    public ResponseEntity<String> removeUser(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> removeUser(@PathVariable Long id) {
         userServiceImpl.delete(id);
 
-        return ResponseEntity.ok(String.format("User with ID = %d was delete!", id));
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

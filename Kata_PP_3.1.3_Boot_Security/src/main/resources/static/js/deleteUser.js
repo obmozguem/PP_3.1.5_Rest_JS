@@ -9,7 +9,7 @@ function deleteUser() {
         ev.preventDefault();
         console.log(deleteForm.id.value);
 
-        fetch("http://localhost:8080/api/admin/removeUser/" + deleteForm.id.value, {
+        fetch("http://localhost:8080/api/admin/" + deleteForm.id.value, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
