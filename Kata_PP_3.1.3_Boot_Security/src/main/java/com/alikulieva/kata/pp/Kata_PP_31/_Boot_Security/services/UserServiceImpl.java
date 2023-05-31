@@ -31,16 +31,25 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public User getById(Long id) {
-        return userRepository.getById(id);
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isEmpty()) {
+            throw new IllegalArgumentException(String.format("There is no user with ID = %d in database", id));
+        }
+
+        return user.get();
+//        return userRepository.getById(id);
     }
 
     @Override
+    @Transactional
     public void addUser(User newUser) {
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userRepository.save(newUser);
     }
 
     @Override
+    @Transactional
     public void edit(User updatedUser) {
         User user = this.getById(updatedUser.getId());
 
@@ -57,6 +66,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }
@@ -67,14 +77,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     }
     @Override
-    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() ->
                 new UsernameNotFoundException(String.format("User %s doesn't exists", username)));
         return user;
-    }
-    @Override
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
     }
 }

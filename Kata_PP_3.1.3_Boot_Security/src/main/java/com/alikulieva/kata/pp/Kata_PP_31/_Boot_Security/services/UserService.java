@@ -17,6 +17,4 @@ public interface UserService {
     void delete(Long id);
 
     Optional<User> findByUsername(String username);
-
-    List<Role> getAllRoles();
 }

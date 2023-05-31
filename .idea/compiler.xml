@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Kata_PP_3.1.3_Boot_Security" target="17" />
+      <module name="Kata_PP_3.1.3_Boot_Security" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
